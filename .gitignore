@@ -6,6 +6,7 @@
 /[Ww]ebGL/
 /[Bb]ackup/
 
+/Assets/Font
 /Assets/AssetStoreTools*
 /Assets/Editor
 /Assets/PBR Desert Landscape
@@ -16,6 +17,7 @@
 /Assets/Terrain assets
 /Assets/TextMesh Pro
 
+/Assets/Font.meta
 /Assets/Editor.meta
 /Assets/PBR Desert Landscape.meta
 /Assets/PostProcessing.meta
