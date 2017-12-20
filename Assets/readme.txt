@@ -1,5 +1,7 @@
 # 必要アセット
 
+- Cinemachine
+  - http://u3d.as/GJQ
 - Cute Pet
   - http://u3d.as/UPv
 - PBR Desert Landscape
@@ -7,9 +9,9 @@
 - Post Processing Profiles
   - http://u3d.as/W7z
 - TextMesh Pro
-  - 
+  - http://u3d.as/L38
 - UI Builder
-  - 
+  - http://u3d.as/bzD
 
 # フォント
 ## タイトル、スコア
