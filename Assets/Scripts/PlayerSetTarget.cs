@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class PlayerSetTarget : MonoBehaviour {
     [TooltipAttribute("標的オブジェクト")]
-    public GameObject target;
+    public GameObject uiTarget;
 
     [TooltipAttribute("標的を表示する奥行き")]
     public float TARGET_KYORI = 10f;
@@ -35,7 +35,7 @@ public class PlayerSetTarget : MonoBehaviour {
 		if (GameController.NowPhase == GameController.GAME_PHASE.SET_TARGET)
         {
             Vector3 tpos = Camera.main.WorldToScreenPoint (mouseTarget.position);
-            target.transform.position = tpos;
+            uiTarget.transform.position = tpos;
 
             // パワー決定へ以降
             if (Input.GetButtonDown("Jump"))
