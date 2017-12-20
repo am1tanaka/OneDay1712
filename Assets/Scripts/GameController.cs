@@ -70,7 +70,9 @@ public class GameController : MonoBehaviour {
     /** 次のフェーズ*/
     private GAME_PHASE nextPhase = GAME_PHASE.NONE;
 
-    /** ゲームを開始する時のロゴのアニメーションタイムライン*/
+    [TooltipAttribute("タイトルを表示する時のロゴのアニメーションタイムライン")]
+    public PlayableDirector timelineTitleDisp;
+    [TooltipAttribute("ゲームを開始する時のロゴのアニメーションタイムライン")]
     public PlayableDirector timelineTitleStart;
 
     /** ゲーム開始からの待ち時間*/
@@ -102,11 +104,16 @@ public class GameController : MonoBehaviour {
                 flyingVMCamera.SetActive(false);
                 targetVMCamera.SetActive(false);
                 StartCoroutine(updateTitle());
+                timelineTitleDisp.Stop();
+                timelineTitleDisp.time = 0;
+                timelineTitleDisp.Play();
                 Player.transform.position = playerStartPosition;
                 break;
             case SCENE.GAME:
                 targetVMCamera.SetActive(true);
                 nextPhase = GAME_PHASE.START_WAIT;
+                timelineTitleStart.Stop();
+                timelineTitleStart.time = 0;
                 timelineTitleStart.Play();
                 StartCoroutine(updateGame());
                 break;
@@ -160,7 +167,7 @@ public class GameController : MonoBehaviour {
     public float MAX_SPEED = 100f;
 
     [TooltipAttribute("1秒辺りのカウント距離")]
-    public float COUNTUP_RATE = 20f;
+    public float COUNTUP_RATE = 30f;
 
     /** フェーズの初期化*/
     void procInitPhase()
@@ -199,6 +206,11 @@ public class GameController : MonoBehaviour {
 
                     // キロク表示
                     KirokuAnime.SetTrigger("In");
+                    break;
+
+                // カウント開始
+                case GAME_PHASE.RESULT_COUNT:
+                    KirokuNumAnime.SetTrigger("In");
                     break;
 
                 case GAME_PHASE.RESULT_DONE:
@@ -246,8 +258,10 @@ public class GameController : MonoBehaviour {
             if (Input.GetButtonDown("Jump"))
             {
                 ChangePhase(GAME_PHASE.RESULT_DONE);
+                procInitPhase();
                 break;
             }
+            yield return null;
         }
     }
 

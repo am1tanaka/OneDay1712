@@ -15,7 +15,6 @@ public class PlayerFlying : MonoBehaviour {
 	void Update () {
 		if (GameController.NowPhase == GameController.GAME_PHASE.FLYING)
         {
-            Debug.Log(rb.IsSleeping());
             // 静止をチェック
             if (rb.IsSleeping())
             {
