@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using TMPro;
 
 public class GameController : MonoBehaviour {
     private static GameController instance;
@@ -34,6 +35,18 @@ public class GameController : MonoBehaviour {
 
     [TooltipAttribute("タイトルのバーチャルカメラ")]
     public GameObject titleVMCamera;
+    [TooltipAttribute("ターゲット設定のバーチャルカメラ")]
+    public GameObject targetVMCamera;
+    [TooltipAttribute("飛び中のバーチャルカメラ")]
+    public GameObject flyingVMCamera;
+
+    [TooltipAttribute("キロクのアニメーター")]
+    public Animator KirokuAnime;
+    [TooltipAttribute("キロクの数値のアニメーター")]
+    public Animator KirokuNumAnime;
+
+    [TooltipAttribute("キロク数値のテキスト")]
+    public TextMeshProUGUI textKirokuNum;
 
     /** ゲームシーケンス*/
     public enum GAME_PHASE
@@ -43,6 +56,8 @@ public class GameController : MonoBehaviour {
         POWER,      // パワーゲージ
         FLYING,     // 飛ぶ
         RESULT,     // 結果
+        RESULT_COUNT,   // 数え上げ
+        RESULT_DONE,    // 完了アニメ待ち
         NONE
     }
     [SerializeField]
@@ -64,15 +79,18 @@ public class GameController : MonoBehaviour {
     /** プレイヤーオブジェクト*/
     public GameObject Player;
 
+    /** プレイヤーの開始地点*/
+    private Vector3 playerStartPosition;
+
     private void Awake()
     {
         instance = this;
         nextScene = StartScene;
+        playerStartPosition = Player.transform.position;
     }
 
     // Use this for initialization
     void Start () {
-		
 	}
 
     /** シーンの初期化処理*/
@@ -81,11 +99,13 @@ public class GameController : MonoBehaviour {
         switch (nowScene)
         {
             case SCENE.TITLE:
-                titleVMCamera.SetActive(true);
+                flyingVMCamera.SetActive(false);
+                targetVMCamera.SetActive(false);
                 StartCoroutine(updateTitle());
+                Player.transform.position = playerStartPosition;
                 break;
             case SCENE.GAME:
-                titleVMCamera.SetActive(false);
+                targetVMCamera.SetActive(true);
                 nextPhase = GAME_PHASE.START_WAIT;
                 timelineTitleStart.Play();
                 StartCoroutine(updateGame());
@@ -94,7 +114,7 @@ public class GameController : MonoBehaviour {
     }
 
     /** 次のフェーズを設定する*/
-    public static void ChangePhaser(GAME_PHASE ph)
+    public static void ChangePhase(GAME_PHASE ph)
     {
         instance.nextPhase = ph;
     }
@@ -136,6 +156,12 @@ public class GameController : MonoBehaviour {
     [TooltipAttribute("マウスの場所を3D空間で示すオブジェクトの位置")]
     public Transform mouseTarget;
 
+    [TooltipAttribute("最高速度")]
+    public float MAX_SPEED = 100f;
+
+    [TooltipAttribute("1秒辺りのカウント距離")]
+    public float COUNTUP_RATE = 20f;
+
     /** フェーズの初期化*/
     void procInitPhase()
     {
@@ -149,13 +175,36 @@ public class GameController : MonoBehaviour {
             {
                 case GAME_PHASE.SET_TARGET:
                     uiTarget.SetActive(true);
-                    Player.SendMessage("StartSetTarget");
                     break;
 
                     // 
                 case GAME_PHASE.POWER:
                     uiTarget.SetActive(false);
                     Player.SendMessage("StartPower", mouseTarget.position);
+                    break;
+
+                case GAME_PHASE.FLYING:
+                    // Duckに速度設定
+                    Vector3 dir = (mouseTarget.transform.position-Player.transform.position).normalized;
+                    Vector3 add = dir * MAX_SPEED * (float)PlayerPower.power / 100f;
+                    Player.GetComponent<Rigidbody>().velocity = add;
+                    // カメラのターゲットをDuckに変更
+                    flyingVMCamera.SetActive(true);
+                    break;
+
+                case GAME_PHASE.RESULT:
+                    // タイトルカメラに戻す
+                    flyingVMCamera.SetActive(false);
+                    targetVMCamera.SetActive(false);
+
+                    // キロク表示
+                    KirokuAnime.SetTrigger("In");
+                    break;
+
+                case GAME_PHASE.RESULT_DONE:
+                    // 終了アニメ
+                    KirokuAnime.SetTrigger("Out");
+                    KirokuNumAnime.SetTrigger("Out");
                     break;
             }
         }
@@ -170,21 +219,36 @@ public class GameController : MonoBehaviour {
         nextPhase = GAME_PHASE.SET_TARGET;
         procInitPhase();
 
-        // 操作
-        while (NowPhase == GAME_PHASE.SET_TARGET || NowPhase == GAME_PHASE.POWER)
+        // 各状態の完了を待つ
+        while (
+            NowPhase == GAME_PHASE.SET_TARGET
+            || NowPhase == GAME_PHASE.POWER
+            || NowPhase == GAME_PHASE.FLYING
+            || NowPhase == GAME_PHASE.RESULT)
         {
             procInitPhase();
             yield return null;
         }
 
-        // 飛び終わりを待つ
-        while (NowPhase == GAME_PHASE.FLYING)
+        // 結果を表示
+        float kiroku = (Player.transform.position - playerStartPosition).magnitude;
+        for (float x=0f; x<=kiroku; x+=COUNTUP_RATE*Time.deltaTime)
         {
+            textKirokuNum.text = x.ToString("F2") + "m";
             yield return null;
         }
+        textKirokuNum.text = kiroku.ToString("F2") + "m";
+        yield return null;
 
-        // シーンをタイトルに切り替える
-        nextScene = SCENE.TITLE;
+        // クリックされるのを待つ
+        while (true)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                ChangePhase(GAME_PHASE.RESULT_DONE);
+                break;
+            }
+        }
     }
 
 }

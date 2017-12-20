@@ -55,14 +55,14 @@ public class PlayerPower : MonoBehaviour {
             if (Input.GetButtonUp("Jump"))
             {
                 anim.SetTrigger("Flying");
-                GameController.ChangePhaser(GameController.GAME_PHASE.FLYING);
+                GameController.ChangePhase(GameController.GAME_PHASE.FLYING);
             }
 
             // 右クリックでキャンセル
             if (Input.GetMouseButtonDown(1))
             {
                 // 戻す
-                GameController.ChangePhaser(GameController.GAME_PHASE.SET_TARGET);
+                GameController.ChangePhase(GameController.GAME_PHASE.SET_TARGET);
                 anim.SetTrigger("Abort");
             }
         }
