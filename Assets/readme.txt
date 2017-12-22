@@ -13,6 +13,33 @@
 - UI Builder
   - http://u3d.as/bzD
 
+# リソース
+- OneDriveのUnity/OneDay1712内にAudioとFontsをおいてある
+
+# オーディオ
+## BGM
+- タイトル
+  - http://ontama-m.com/midi/data/mp3_file/original/13_yokann.mp3
+  - 音楽の卵  http://ontama-m.com
+  - 13_yokann
+- ゲーム中
+  - http://ontama-m.com/midi/data/mp3_file/original/cake5toubun.mp3
+  - cake5toubun
+## 効果音 https://soundeffect-lab.info/
+- 開始 decision7
+- ゲージアップ
+  - https://www.peko-step.com/tool/soundeffect/ 自作
+  - pekowave1
+- バウンド
+  - stupid3
+- 発射
+  - ビューんと逃げる flee1
+- 結果音
+  - drum-roll1
+  - decision18
+- ハイスコア
+  - ラッパのファンファーレ trumpet1 https://soundeffect-lab.info/sound/anime/
+
 # フォント
 ## タイトル、スコア
 - アンニャントロマン

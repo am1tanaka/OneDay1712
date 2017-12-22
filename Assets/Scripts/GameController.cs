@@ -108,6 +108,7 @@ public class GameController : MonoBehaviour {
                 timelineTitleDisp.time = 0;
                 timelineTitleDisp.Play();
                 Player.transform.position = playerStartPosition;
+                SoundController.PlayBGM(SoundController.BGM.TITLE);
                 break;
             case SCENE.GAME:
                 targetVMCamera.SetActive(true);
@@ -116,6 +117,7 @@ public class GameController : MonoBehaviour {
                 timelineTitleStart.time = 0;
                 timelineTitleStart.Play();
                 StartCoroutine(updateGame());
+                SoundController.PlayBGM(SoundController.BGM.BGM);
                 break;
         }
     }
@@ -150,6 +152,7 @@ public class GameController : MonoBehaviour {
         {
             if (Input.GetButtonDown("Jump"))
             {
+                SoundController.Play(SoundController.SE.START);
                 break;
             }
             yield return null;
@@ -182,6 +185,7 @@ public class GameController : MonoBehaviour {
             {
                 case GAME_PHASE.SET_TARGET:
                     uiTarget.SetActive(true);
+                    SoundController.Stop();
                     break;
 
                     // 
@@ -197,12 +201,15 @@ public class GameController : MonoBehaviour {
                     Player.GetComponent<Rigidbody>().velocity = add;
                     // カメラのターゲットをDuckに変更
                     flyingVMCamera.SetActive(true);
+                    // 飛翔音
+                    SoundController.Play(SoundController.SE.SHOOT);
                     break;
 
                 case GAME_PHASE.RESULT:
                     // タイトルカメラに戻す
                     flyingVMCamera.SetActive(false);
                     targetVMCamera.SetActive(false);
+                    SoundController.StopBGM();
 
                     // キロク表示
                     KirokuAnime.SetTrigger("In");
@@ -211,6 +218,7 @@ public class GameController : MonoBehaviour {
                 // カウント開始
                 case GAME_PHASE.RESULT_COUNT:
                     KirokuNumAnime.SetTrigger("In");
+                    SoundController.Play(SoundController.SE.RESULT_ROLL);
                     break;
 
                 case GAME_PHASE.RESULT_DONE:
@@ -250,6 +258,8 @@ public class GameController : MonoBehaviour {
             yield return null;
         }
         textKirokuNum.text = kiroku.ToString("F2") + "m";
+        SoundController.Stop();
+        SoundController.Play(SoundController.SE.RESULT);
         yield return null;
 
         // クリックされるのを待つ
@@ -259,6 +269,7 @@ public class GameController : MonoBehaviour {
             {
                 ChangePhase(GAME_PHASE.RESULT_DONE);
                 procInitPhase();
+                SoundController.Play(SoundController.SE.START);
                 break;
             }
             yield return null;
