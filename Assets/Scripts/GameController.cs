@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
     private static GameController instance;
@@ -83,6 +84,9 @@ public class GameController : MonoBehaviour {
 
     /** プレイヤーの開始地点*/
     private Vector3 playerStartPosition;
+
+    /** 今回のハイスコア*/
+    private int highScore = 0;
 
     private void Awake()
     {
@@ -251,7 +255,8 @@ public class GameController : MonoBehaviour {
         }
 
         // 結果を表示
-        float kiroku = (Player.transform.position - playerStartPosition).magnitude;
+        int ikiroku = (int)((Player.transform.position - playerStartPosition).magnitude * 100f+0.5f);
+        float kiroku = ikiroku / 100f;
         for (float x=0f; x<=kiroku; x+=COUNTUP_RATE*Time.deltaTime)
         {
             textKirokuNum.text = x.ToString("F2") + "m";
@@ -261,6 +266,38 @@ public class GameController : MonoBehaviour {
         SoundController.Stop();
         SoundController.Play(SoundController.SE.RESULT);
         yield return null;
+
+        // ハイスコアか
+        bool isHighscore = ikiroku > highScore;
+        if (isHighscore)
+        {
+            highScore = ikiroku;
+            SoundController.Play(SoundController.SE.HIGHSCORE);
+
+            // ハイスコア処理
+            while (true)
+            {
+                if (Input.GetButton("Jump"))
+                {
+                    naichilab.RankingLoader.Instance.SendScoreAndShowRanking(ikiroku);
+                    break;
+                }
+                yield return null;
+            }
+
+            // 消えるのを待つ
+            while (true)
+            {
+                // シーンが消えたら、タイトルへ戻す
+                if (!SceneManager.GetSceneByName("Ranking").IsValid())
+                {
+                    ChangePhase(GAME_PHASE.RESULT_DONE);
+                    procInitPhase();
+                    yield break;
+                }
+                yield return null;
+            }
+        }
 
         // クリックされるのを待つ
         while (true)
