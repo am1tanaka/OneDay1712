@@ -891,9 +891,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\u30AD\u30ED\u30AF"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 57397a0a631445f4cbeb560b3e5fc15c, type: 2}
-  m_sharedMaterial: {fileID: 21885222023076660, guid: 57397a0a631445f4cbeb560b3e5fc15c,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 004cd6e7272acad4186423fbb2695ab6, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 245e82e3bf730f74b87a84366352e3a8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1148,9 +1147,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "CLICK TO START\uFF01"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 57397a0a631445f4cbeb560b3e5fc15c, type: 2}
-  m_sharedMaterial: {fileID: 21885222023076660, guid: 57397a0a631445f4cbeb560b3e5fc15c,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 004cd6e7272acad4186423fbb2695ab6, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 9d770d1b1e16ef443a612bdd1090eb2d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3779,8 +3777,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "\u30D5\u30E9\u30A4\u30F3\u30B0\u30FB\u30AB\u30E2\uFF01"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 57397a0a631445f4cbeb560b3e5fc15c, type: 2}
-  m_sharedMaterial: {fileID: 21885222023076660, guid: 57397a0a631445f4cbeb560b3e5fc15c,
+  m_fontAsset: {fileID: 11400000, guid: 004cd6e7272acad4186423fbb2695ab6, type: 2}
+  m_sharedMaterial: {fileID: 21326329570553476, guid: 004cd6e7272acad4186423fbb2695ab6,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4449,7 +4447,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: ef18cc0d42b06e748b8345f8daefcce2, type: 3}
+    m_Font: {fileID: 12800000, guid: 35f4641c2ace643428a4d3b9620502c4, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -6820,7 +6818,7 @@ GameObject:
   - component: {fileID: 1314060038}
   - component: {fileID: 1314060037}
   m_Layer: 5
-  m_Name: TMP SubMeshUI [toroman SDF Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMeshUI [toroman SDF-KYORI NUM + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7570,8 +7568,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: POWER
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 004cd6e7272acad4186423fbb2695ab6, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 9933578414d38d743903646554771018, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8793,8 +8791,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "Copyright \xA9 2017 \u305F\u306A\u304B\u3086\u3046"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: da52bad90cf964648b8214f258e379ef, type: 2}
-  m_sharedMaterial: {fileID: 21135142258430114, guid: da52bad90cf964648b8214f258e379ef,
+  m_fontAsset: {fileID: 11400000, guid: 1553821fa703bbd428bfd86a03e42468, type: 2}
+  m_sharedMaterial: {fileID: 21133455416996322, guid: 1553821fa703bbd428bfd86a03e42468,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -11156,9 +11154,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 100.0m
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 57397a0a631445f4cbeb560b3e5fc15c, type: 2}
-  m_sharedMaterial: {fileID: 21885222023076660, guid: 57397a0a631445f4cbeb560b3e5fc15c,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 004cd6e7272acad4186423fbb2695ab6, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: ac45c74d9c587984491d20aae5a03e3e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
