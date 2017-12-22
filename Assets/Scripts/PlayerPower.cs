@@ -34,16 +34,23 @@ public class PlayerPower : MonoBehaviour {
     public void StartPower(Vector3 pos)
     {
         targetWorldPosition = pos;
-        FillingObject.transform.position = pos;
         FillingObject.SetActive(true);
-        FillingObject.transform.position = Camera.main.WorldToScreenPoint(pos);
+        FillingObject.transform.position = Camera.main.WorldToScreenPoint(targetWorldPosition);
         anim = FillingObject.GetComponent<Animator>();
         anim.speed = ANIME_SPEED;
         anim.SetTrigger("Start");
     }
 
-    // Update is called once per frame
-    void Update () {
+    private void LateUpdate()
+    {
+        if (GameController.NowPhase == GameController.GAME_PHASE.POWER)
+        {
+            FillingObject.transform.position = Camera.main.WorldToScreenPoint(targetWorldPosition);
+        }
+    }
+
+        // Update is called once per frame
+        void Update () {
 		if (GameController.NowPhase == GameController.GAME_PHASE.POWER)
         {
             // パラメーターの表示

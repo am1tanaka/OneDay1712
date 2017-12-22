@@ -23,4 +23,13 @@
   - 中井 良尚
   - http://typingart.net/?p=40
 
+## 利用する文字
+```
+0123456789フライング・カモ！CLICKTOSTARTキロクm
+```
+
+### 日本語の範囲
+https://gist.github.com/thorikawa/2856a7cf912349c0b6b7 via https://qiita.com/thorikawa/items/03b65b75fa9461b53efd
+
+
 [EOF]
