@@ -1487,7 +1487,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb5552fbf8259974ca3b5ded8715caed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TARGET_DISTANCE: 10
+  TARGET_DISTANCE: 50
+  LEFT_MAX: -30
+  RIGHT_MAX: 30
+  UP_MAX: 30
+  DOWN_MAX: 1
+  followObjectTransform: {fileID: 870578870}
+  kamoTransform: {fileID: 939074053}
 --- !u!1001 &306462768
 Prefab:
   m_ObjectHideFlags: 0
@@ -5110,7 +5116,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 939074050}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 6d5d24718ef65b24ea6bb4f373713786, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
