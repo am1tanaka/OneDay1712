@@ -23,11 +23,17 @@ public class GameController : MonoBehaviour {
     {
         TITLE,
         GAME,
+        RANKING,
         NONE
     }
 
     [TooltipAttribute("開始時のシーン")]
     public SCENE StartScene = SCENE.TITLE;
+    public static SCENE NowScene
+    {
+        get { return instance.nowScene; }
+        set { }
+    }
     /** 現在のシーン*/
     [SerializeField]
     private SCENE nowScene;
@@ -86,7 +92,12 @@ public class GameController : MonoBehaviour {
     private Vector3 playerStartPosition;
 
     /** 今回のハイスコア*/
-    private int highScore = 0;
+    private int highScore;
+    public static int HighScore
+    {
+        get { return instance.highScore; }
+        private set { }
+    }
 
     private void Awake()
     {
@@ -107,12 +118,12 @@ public class GameController : MonoBehaviour {
             case SCENE.TITLE:
                 flyingVMCamera.SetActive(false);
                 targetVMCamera.SetActive(false);
-                StartCoroutine(updateTitle());
                 timelineTitleDisp.Stop();
                 timelineTitleDisp.time = 0;
                 timelineTitleDisp.Play();
                 Player.transform.position = playerStartPosition;
                 SoundController.PlayBGM(SoundController.BGM.TITLE);
+                Duck.SetAnim(Duck.ANIM.IDLE);
                 break;
             case SCENE.GAME:
                 targetVMCamera.SetActive(true);
@@ -149,21 +160,6 @@ public class GameController : MonoBehaviour {
         }
 	}
 
-    /** タイトルシーンの更新処理*/
-    IEnumerator updateTitle()
-    {
-        while (true)
-        {
-            if (Input.GetButtonDown("Jump"))
-            {
-                SoundController.Play(SoundController.SE.START);
-                break;
-            }
-            yield return null;
-        }
-        nextScene = SCENE.GAME;
-    }
-
     [TooltipAttribute("標的のUIのオブジェクト")]
     public GameObject uiTarget;
 
@@ -190,12 +186,14 @@ public class GameController : MonoBehaviour {
                 case GAME_PHASE.SET_TARGET:
                     uiTarget.SetActive(true);
                     SoundController.Stop();
+                    Duck.SetAnim(Duck.ANIM.IDLE);
                     break;
 
                     // 
                 case GAME_PHASE.POWER:
                     uiTarget.SetActive(false);
                     Player.SendMessage("StartPower", mouseTarget.position);
+                    Duck.SetAnim(Duck.ANIM.RUN);
                     break;
 
                 case GAME_PHASE.FLYING:
@@ -205,6 +203,8 @@ public class GameController : MonoBehaviour {
                     Player.GetComponent<Rigidbody>().velocity = add;
                     // カメラのターゲットをDuckに変更
                     flyingVMCamera.SetActive(true);
+                    // 飛翔
+                    Duck.SetAnim(Duck.ANIM.WALK);
                     // 飛翔音
                     SoundController.Play(SoundController.SE.SHOOT);
                     break;
@@ -217,6 +217,9 @@ public class GameController : MonoBehaviour {
 
                     // キロク表示
                     KirokuAnime.SetTrigger("In");
+
+                    // アイドル
+                    Duck.SetAnim(Duck.ANIM.IDLE);
                     break;
 
                 // カウント開始
@@ -273,6 +276,7 @@ public class GameController : MonoBehaviour {
         {
             highScore = ikiroku;
             SoundController.Play(SoundController.SE.HIGHSCORE);
+            Duck.SetAnim(Duck.ANIM.JUMP);
 
             // ハイスコア処理
             while (true)
