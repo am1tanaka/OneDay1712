@@ -22,8 +22,10 @@ public class Tweet : MonoBehaviour {
 		{
 			naichilab.UnityRoomTweet.Tweet(
 				"flying-kamo",
-				"◆フライング・カモ！で記録更新！:"+(float)GameController.HighScore/100f+"m @am1tanaka",
-				"unityroom"
+				"◆フライング・カモ！で"+(float)GameController.HighScore/100f+"m飛びました！",
+				"unityroom",
+                "unity1week",
+                "flyingkamo"
 				);
 		}
 	}
