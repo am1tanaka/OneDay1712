@@ -28,6 +28,9 @@ public class PlayerSetTarget : MonoBehaviour {
             Vector3 tpos = Camera.main.WorldToScreenPoint (mouseTarget.position);
             uiTarget.transform.position = tpos;
 
+            // 向きを設定
+            Duck.SetPlayerRoll(mouseTarget.transform.position);
+
             // パワー決定へ以降
             if (Input.GetButtonDown("Jump"))
             {

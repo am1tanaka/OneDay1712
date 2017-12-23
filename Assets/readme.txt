@@ -8,6 +8,7 @@
   - http://u3d.as/tuV
 - Post Processing Profiles
   - http://u3d.as/W7z
+- Post Processing Stack
 - TextMesh Pro
   - http://u3d.as/L38
 - UI Builder

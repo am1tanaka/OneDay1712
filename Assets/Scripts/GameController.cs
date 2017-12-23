@@ -124,6 +124,7 @@ public class GameController : MonoBehaviour {
                 Player.transform.position = playerStartPosition;
                 SoundController.PlayBGM(SoundController.BGM.TITLE);
                 Duck.SetAnim(Duck.ANIM.IDLE);
+                Duck.SetTitleRotate();
                 break;
             case SCENE.GAME:
                 targetVMCamera.SetActive(true);
@@ -214,6 +215,7 @@ public class GameController : MonoBehaviour {
                     flyingVMCamera.SetActive(false);
                     targetVMCamera.SetActive(false);
                     SoundController.StopBGM();
+                    Duck.SetTitleRotate();
 
                     // キロク表示
                     KirokuAnime.SetTrigger("In");

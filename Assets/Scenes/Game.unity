@@ -5277,11 +5277,12 @@ GameObject:
   m_Component:
   - component: {fileID: 939074053}
   - component: {fileID: 939074052}
-  - component: {fileID: 939074051}
   - component: {fileID: 939074054}
   - component: {fileID: 939074055}
   - component: {fileID: 939074056}
   - component: {fileID: 939074057}
+  - component: {fileID: 939074051}
+  - component: {fileID: 939074058}
   m_Layer: 0
   m_Name: Duck
   m_TagString: Untagged
@@ -5343,7 +5344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851ae4cb2be0cca4ca634a3945f1efe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MIN_BOUND_SE: 0.25
+  MIN_BOUND_SE: 0.2
+  rotateDumping: 0.2
 --- !u!114 &939074055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5384,6 +5386,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea777291976e9d541ab22ceccd5b96af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &939074058
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 939074050}
+  m_Material: {fileID: 13400000, guid: 6d5d24718ef65b24ea6bb4f373713786, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0.07, z: 0.11}
 --- !u!1001 &944875180
 Prefab:
   m_ObjectHideFlags: 0
@@ -10729,7 +10743,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1899823704}
-  m_LocalRotation: {x: -0, y: 0.9927952, z: -0, w: 0.11982323}
+  m_LocalRotation: {x: -0, y: 0.99279535, z: -0, w: 0.11982234}
   m_LocalPosition: {x: -0.23029774, y: -0.29099998, z: 2.1163373}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -11501,7 +11515,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1986827123}
-  m_LocalRotation: {x: -0, y: 0.9927952, z: -0, w: 0.11982323}
+  m_LocalRotation: {x: -0, y: 0.99279535, z: -0, w: 0.11982234}
   m_LocalPosition: {x: -0.24195284, y: -0.29099998, z: 2.1639311}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
