@@ -183,6 +183,7 @@ public class GameController : MonoBehaviour {
                     uiTarget.SetActive(true);
                     SoundController.Stop();
                     Duck.SetAnim(Duck.ANIM.IDLE);
+                    ManualController.Page(0);
                     break;
 
                     // 
@@ -190,6 +191,7 @@ public class GameController : MonoBehaviour {
                     uiTarget.SetActive(false);
                     Player.SendMessage("StartPower", mouseTarget.position);
                     Duck.SetAnim(Duck.ANIM.RUN);
+                    ManualController.Page(1);
                     break;
 
                 case GAME_PHASE.FLYING:
@@ -203,6 +205,7 @@ public class GameController : MonoBehaviour {
                     Duck.SetAnim(Duck.ANIM.WALK);
                     // 飛翔音
                     SoundController.Play(SoundController.SE.SHOOT);
+                    ManualController.Page(-1);
                     break;
 
                 case GAME_PHASE.RESULT:

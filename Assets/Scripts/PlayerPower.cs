@@ -59,7 +59,7 @@ public class PlayerPower : MonoBehaviour {
             textPercent.text = "" + power + "%";
 
             // 射出
-            if (Input.GetButtonUp("Jump"))
+            if (Input.GetButtonDown("Jump"))
             {
                 anim.SetTrigger("Flying");
                 GameController.ChangePhase(GameController.GAME_PHASE.FLYING);
