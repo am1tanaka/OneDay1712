@@ -17,7 +17,11 @@ public class RankingButton : MonoBehaviour {
     {
         if (GameController.NowScene == GameController.SCENE.TITLE)
         {
-            rankingButton.interactable = (GameController.HighScore > 0);
+            rankingButton.interactable = true;
+        }
+        else
+        {
+            rankingButton.interactable = false;
         }
     }
 
