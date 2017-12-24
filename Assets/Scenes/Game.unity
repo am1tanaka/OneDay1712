@@ -3114,7 +3114,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0.5
+  m_padding: 7.8125005
   m_canvasRenderer: {fileID: 569753238}
   m_TextComponent: {fileID: 1672251196}
   m_materialReferenceIndex: 1
@@ -8235,6 +8235,10 @@ Prefab:
     - target: {fileID: 109916, guid: 5ba410e113f6d504985918a45d0386dc, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6490804, guid: 5ba410e113f6d504985918a45d0386dc, type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5ba410e113f6d504985918a45d0386dc, type: 2}
