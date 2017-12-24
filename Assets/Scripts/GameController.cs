@@ -23,7 +23,6 @@ public class GameController : MonoBehaviour {
     {
         TITLE,
         GAME,
-        RANKING,
         NONE
     }
 
@@ -105,10 +104,6 @@ public class GameController : MonoBehaviour {
         nextScene = StartScene;
         playerStartPosition = Player.transform.position;
     }
-
-    // Use this for initialization
-    void Start () {
-	}
 
     /** シーンの初期化処理*/
     void procInit()
