@@ -16,7 +16,19 @@ public class Tweet : MonoBehaviour {
 		button.interactable = (GameController.HighScore > 0) || IsDebug;
 	}
 
-	public void tweet()
+    public void Update()
+    {
+        if (GameController.NowScene == GameController.SCENE.TITLE)
+        {
+            button.interactable = (GameController.HighScore > 0) || IsDebug;
+        }
+        else
+        {
+            button.interactable = false;
+        }
+    }
+
+    public void tweet()
 	{
 		if (GameController.HighScore > 0 || IsDebug)
 		{
