@@ -26,7 +26,7 @@ namespace naichilab
                     int ue = (int)(score / 100);
                     int sita = (int)score % 100;
 
-					return ue+"."+sita+"m";
+					return ue+"."+sita.ToString("D2")+"m";
 				}
 			}
 		}

@@ -34,7 +34,7 @@ public class Tweet : MonoBehaviour {
 		{
 			naichilab.UnityRoomTweet.Tweet(
 				"flying-kamo",
-				"◆フライング・カモ！で"+(float)GameController.HighScore/100f+"m飛びました！",
+				"◆フライング・カモ！で"+((float)GameController.HighScore/100f).ToString("F2")+"m飛びました！",
 				"unityroom",
                 "unity1week",
                 "flyingkamo"
